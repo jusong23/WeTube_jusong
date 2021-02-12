@@ -1,0 +1,10 @@
+#1 node.js 설치
+express는 nodejs의 프레임워크
+
+#2.2 Installing Express with NPM
+-NPM.JS (Node Pakage Manager, 파일관리시스템) 
+ 즉, JS 파일(패키지)관리를 책임져 줌 ! 
+-npm init 입력해서 package.json 생성
+-npm install express 해서 express설치(node_modules 설치됨)
+ 반드시 package.json 내에서 입력!
+

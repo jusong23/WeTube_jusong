@@ -1,0 +1,22 @@
+{
+  "name": "wetube_jusong",
+  "version": "1.0.0",
+  "description": "Cloning WeTube",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jusong23/WeTube_jusong.git"
+  },
+  "author": "LEE JUSONG",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jusong23/WeTube_jusong/issues"
+  },
+  "homepage": "https://github.com/jusong23/WeTube_jusong#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
