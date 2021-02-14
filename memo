@@ -1,10 +1,87 @@
-#1 node.js 설치
-express는 nodejs의 프레임워크
+#1 node.js "설치"
+  express는 nodejs의 프레임워크
 
-#2.2 Installing Express with NPM
--NPM.JS (Node Pakage Manager, 파일관리시스템) 
- 즉, JS 파일(패키지)관리를 책임져 줌 ! 
--npm init 입력해서 package.json 생성
--npm install express 해서 express설치(node_modules 설치됨)
- 반드시 package.json 내에서 입력!
+#2.2 Installing Express with NPM(Express "설치")
+  -NPM.JS (Node Pakage Manager, 파일관리시스템) 
+  즉, JS 파일(패키지)관리를 책임져 줌 ! 
+  -npm init 입력해서 package.json 생성
+  -npm install express 해서 express설치(node_modules 설치됨)
+  반드시 package.json 내에서 입력!
 
+#2.3 Your First Express Server
+  -기본 github Desktop 백업설정
+  -require = 모듈을 가져오는 것.(찾는것)
+  app.listen(포트) = 포트설정
+  package.json에 scripts 생성 npm start 만으로 node index.js 입력되도록
+
+#2.4 Handling Routes with Express
+  GET = 단순히 페이지를 가져오는 것.
+  POST = 정보를 전달.
+  req = GET & POST 로 전달한 정보를 요청해서, 정보를 받음 !
+  res = 정보를 응답! ( res.send )
+
+#2.5 ES6 on NodeJS using Babel(Babel "설치")
+  -npm install @babel/node 입력해서 설치(JS코드 깔끔하게 만들어줌)
+  -npm install @babel/preset-env 실행
+  - "scripts": {
+      "start": "babel-node index.js"
+    } 를 package.json에 입력(babel이 코드 다루게하기위함)
+  -npm install @babel/core  -> npm start 하면 잘 됨
+  - babel마치면
+  const handleHome = (req, res) => res.send("Hello from home"); 
+  이런식(allow function)으로 표현가능
+  -npm install nodemon -D 입력 
+  -> "devDependencies": {
+      "nodemon": "^2.0.7"
+    }  생기는거 확인 후
+  - "scripts": {
+      "start": "nodemon --exec babel-node index.js"
+    }  를 package.json에 입력 -> npm start -> 자동으로 서버 재실행(ex. VSC변경 후 저장 - 새로고침)
+
+#2.6 Express Core: Middlewares
+ -라우팅 후, 콜백함수 사이에서 동작할 함수. 즉, 사이에 있는 함수.
+ -주의 : next()가 꼭 필요하다 !! 
+  안그럼 다음에 실행할 콜백함수가 실행하지 못할거야!!
+ -개별적용 = 라우팅 - 콜백 사이에 직접 위치해줌.
+ -모두적용 = app.use () 로 적용해주고, 
+  해당 코드 아래에 있는 모든 코드에 적용됨.
+ -"scripts": {
+    "start": "nodemon --exec babel-node index.js --delay 2"
+  }
+
+#2.7 Express Core: Middlewares part Two(다양한 Middleware 소개)
+ -morgan(로그:(활동기록 등)를 남겨줌)설치 npm install morgan 
+  -> import morgan from "morgan"
+ -helmet(기초보안담당함)설치 npm install helmet 
+  -> import morgan from "helmet"
+ -Middleware가 console.log 등등이 아닌 res.send를 호출하는 경우,
+ 연결 끊을수 있음 
+ -미들웨어 : 라우트(유저"/")와 실행하는 콜백함수(응답 handleHome) 사이에서 동작하는 함수.
+ -모든 미들웨어함수는 유저- 응답 사이에서 동작하므로
+ 미들웨어가 끝나고 난 뒤, 응답(콜백함수)를 실행하기 위해서 next() 가 필수적임. 
+ 혹은 미들웨어에서 중단시킬 수 있음.
+  -cookieParser(쿠키를 다룰 수 있음)설치 npm install cookieParser
+  -> import morgan from "cookie-parser"
+   -bodyParser(from데이터를 서버로 받아와서 활용가능함)설치 npm install bodyParser 
+  -> import morgan from "body-parser"
+
+  #2.8 Express Core: Routing
+  -"scripts": {
+    "start": "nodemon --exec babel-node init.js --delay 2"
+  }
+  -export default app; → import app from "./app";
+  -export const 변수명; → import { 변수명 } from "./파일명";
+  -Router
+  -express.Router(); 라우트를 카테고리별로 쪼개서 묶을 수 있음.
+   그럼 주소가 /user/~~~ /video/ ~~~ 이런식으로 나뉠 수 있음.
+
+ #2.9 MVC Pattern part One
+ M : data
+ V : how does the data look
+ C : function that looks for the data
+
+ #2.10 MVC Pattern part Two
+ 각각 쪼개서 route 실행 ! /user/login 만으로 url 이동이 가능하게끔
+
+ #2.11 MVC Pattern part Three (C : Controller 파트)
+ '=>' 표시는 return 한다는 뜻
